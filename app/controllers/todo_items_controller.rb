@@ -1,5 +1,6 @@
 class TodoItemsController < ApplicationController
-  before_action :set_todo_item, only: [:show, :edit, :update, :destroy], :set_todo_item
+  before_action :set_todo_list
+  before_action :set_todo_item, only: [:show, :edit, :update, :destroy]
 
 
   def show
