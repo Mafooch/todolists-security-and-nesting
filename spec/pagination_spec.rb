@@ -9,19 +9,19 @@ feature "Module 4 Pagination Test" do
 
     around :each do |example|
         if $continue
-            $continue = false 
-            example.run 
+            $continue = false
+            example.run
             $continue = true unless example.exception
         else
             example.skip
         end
     end
 
-    before :all do 
+    before :all do
         TodoItem.destroy_all
         TodoList.destroy_all
         User.destroy_all
-        load "#{Rails.root}/db/seeds.rb"  
+        load "#{Rails.root}/db/seeds.rb"
     end
 
     context "rq13" do
@@ -37,7 +37,8 @@ feature "Module 4 Pagination Test" do
             # Check that there are no more lists than user has
             (1..numPages-1).each do |p|
                 expect(page.all('td', :text => /\AList/).count).to be <= 8
-                click_link("#{p+1}", :href => "/?page=#{p+1}")
+                # click_link("#{p+1}", :href => "/?page=#{p+1}")
+                click_link("#{p+1}", :href => "/todo_lists?page=#{p+1}")
             end
         end
     end
