@@ -44,11 +44,9 @@ feature "Module 4 End-2-End Test" do
             expect(URI.parse(page.current_url).path).to eq(root_path)
             expect(page).to have_content("Logged in successfully")
             expect(page).to have_content("Listing Todo Lists")
-            # expect(page).to have_link(2, :href => "/?page=2")
-            expect(page).to have_link(2, :href => "/todo_lists?page=2")
+            expect(page).to have_link(2, :href => "/?page=2")
 
-            # click_link(2, :href => "/?page=2")          # go to second page of todo_lists for user
-            click_link(2, :href => "/todo_lists?page=2")          # go to second page of todo_lists for user
+            click_link(2, :href => "/?page=2")          # go to second page of todo_lists for user
             click_link("Show", :match => :first)        # select first todo_list on second page
 
             # gather data about selected item for comparison tests later
